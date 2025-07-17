@@ -7,6 +7,7 @@
 ### about.php or contact.php
 
 ```html
+
     <?php
         require_once "Code/views/partials/function.php";
         $heading = "About or Contact";
