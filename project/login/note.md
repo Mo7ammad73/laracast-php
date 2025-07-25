@@ -63,31 +63,37 @@ button {
 ## فایل `login.php`
 
 ```php
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html>
+<?php
+    session_start();
+?>
+<!doctype html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ورود</title>
-    <link rel="stylesheet" href="../style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>صفحه ورود</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="container">
-    <form action="check-login.php" method="POST">
-        <label>نام کاربری:</label>
-        <input type="text" name="username" autocomplete="off" required>
-
+    <form class="login-box" method="post" action="checklogin.php" autocomplete="off">
+        <lable>نام کاربری:</lable>
+        <input type="text" name="username" required><br>
         <label>رمزعبور:</label>
-        <input type="password" name="password" autocomplete="off" required>
-
+        <input type="password" name="password" required><br>
         <div class="buttons">
             <button type="submit">ورود</button>
-            <a href="../create.php"><button type="button">ثبت‌نام</button></a>
+            <button type=button onclick="window.location.href='create.php'">ثبت نام</button>
         </div>
+        <?php
+            if (isset($_SESSION['error'])) {
+                echo "<p style='color: red;'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']);
+            }
+        ?>
     </form>
-</div>
 </body>
 </html>
+
 ```
 
 ---
@@ -96,30 +102,26 @@ button {
 
 ```php
 <?php
-session_start();
-require_once "../database.php";
-$config = require_once "../config.php";
-$db = new Database($config['database']);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    $user = $db->query("SELECT * FROM users WHERE username = :u AND password = :p", [
-        ':u' => $username,
-        ':p' => $password
-    ])->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        $_SESSION['user'] = $user['username'];
-        header("Location: ../dashboard.php");
+    session_start();
+    require_once "database.php";
+    $config = require_once "config.php";
+    $db = new Database($config["database"]);
+    if ($_SERVER["REQUEST_METHOD"]=="POST") {
+        $username = isset($_POST["username"]) ? $_POST["username"] : "";
+        $password = isset($_POST["password"]) ? $_POST["password"] : "";
+    }
+    $statement = $db->query("select * from users where username= :u and  password= :p",["u"=>$username,"p"=>$password]);
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($user){
+        $_SESSION["user"] = $username;
+        header("location:dashbord.php");
         exit;
-    } else {
-        $_SESSION['error'] = "نام کاربری یا رمز عبور اشتباه است.";
-        header("Location: login.php");
+    }else{
+        $_SESSION["error"]= "نام کاربری یا رمز عبور اشتباه هست";
+        header("location:login.php");
         exit;
     }
-}
+
 ```
 
 ---
@@ -127,30 +129,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ## فایل `create.php`
 
 ```php
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html>
+
+<?php
+    session_start();
+?>
+<!doctype html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>ثبت‌نام</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ثبت نام</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="container">
-    <form action="check-insert.php" method="POST">
-        <label>نام کاربری:</label>
-        <input type="text" name="username" autocomplete="off" required>
 
+    <form class="login-box" method="post" action="check_insert.php">
+        <lable>نام کاربری:</lable>
+        <input type="text" name="username" required><br>
         <label>رمزعبور:</label>
-        <input type="password" name="password" autocomplete="off" required>
-
+        <input type="password" name="password" required><br>
         <div class="buttons">
-            <button type="submit">ثبت‌نام</button>
+            <button type="submit">ثبت</button>
+            <button type="reset">لغو</button>
         </div>
+        <br>
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo "<p style='color: red;'>" . $_SESSION['error'] . "</p>";
+            unset($_SESSION['error']);
+        }
+        ?>
     </form>
-</div>
 </body>
 </html>
+
 ```
 
 ---
@@ -159,32 +171,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 ```php
 <?php
-session_start();
-require_once "database.php";
-$config = require_once "config.php";
-$db = new Database($config['database']);
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-
-    $exist = $db->query("SELECT * FROM users WHERE username = :u", [':u' => $username])->fetch(PDO::FETCH_ASSOC);
-
-    if ($exist) {
-        $_SESSION['error'] = "این نام کاربری قبلاً ثبت شده است.";
-        header("Location: create.php");
-        exit;
+    session_start();
+    require_once "database.php";
+    $config = require_once "config.php";
+    $db = new Database($config['database']);
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $username = isset($_POST['username']) ? $_POST['username'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
+        $statement = $db->query("SELECT * FROM users WHERE username = :u", [':u' => $username])->fetch(pdo::FETCH_ASSOC);
+        if($statement) {
+            $_SESSION['error'] = "این نام کاربری قبلا ثبت نام کرده";
+            header("location:create.php");
+            exit;
+        }else{
+            $db->query("INSERT INTO users (username, password) VALUES (:u, :p)", [':u' => $username, ':p' => $password]);
+            $_SESSION['user'] = $username;
+            header("location:dashbord.php");
+            exit;
+        }
     }
 
-    $db->query("INSERT INTO users (username, password) VALUES (:u, :p)", [
-        ':u' => $username,
-        ':p' => $password
-    ]);
 
-    $_SESSION['user'] = $username;
-    header("Location: dashboard.php");
-    exit;
-}
 ```
 
 ---
@@ -192,11 +199,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ## فایل `logout.php`
 
 ```php
-<?php
-session_start();
-session_destroy();
-header("Location: login/login.php");
-exit;
+    <?php
+    session_start();
+    session_destroy();
+    header("Location: login/login.php");
+    exit;
 ```
 
 ---
@@ -205,26 +212,27 @@ exit;
 
 ```php
 <?php
-session_start();
-if (!isset($_SESSION['user'])) {
-    header("Location: login/login.php");
-    exit;
-}
-?>
-<!DOCTYPE html>
-<html>
+    session_start();
+    if(!isset($_SESSION['user'])){
+        header("location:login.php");
+        exit;
+    }
+    ?>
+<!doctype html>
+<html dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>داشبورد</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>صفحه اصلی</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<div class="container">
-    <h2>خوش آمدید، <?= htmlspecialchars($_SESSION['user']) ?></h2>
-    <a href="logout.php"><button>خروج</button></a>
-</div>
+    <h2>سلام<?=htmlspecialchars($_SESSION["user"]) ?></h2>
+    <a href="login.php">خروج</a>
 </body>
 </html>
+
+
 ```
 
 ---
