@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Vazir';
+    src: url('Vazirmatn-Light.woff2') format('woff2'),
+    url('Vazirmatn-Light.woff2') format('woff2');
+}
+body {
+    font-family: 'Vazir', Arial;
+    font-size: 20px;
+    background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+
+
+}
+body .dashboard{
+    background-color: #f1f1f1;
+}
+.login-box {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    width: 300px;
+}
+
+.dashboard {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 400px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #666;
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+.buttons{
+    display: flex;
+    justify-content: center; /* دکمه‌ها وسط چین می‌شن */
+    gap: 10px; /* فاصله بین دکمه‌ها */
+    margin-top: 20px;
+}
+button {
+    width: 50%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: 'Vazir', Arial;
+}
+button:hover {
+    background-color: #45a049;
+}
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #ff5252;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+a:hover {
+    background-color: #e04040;
+}
+.btn{
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
