@@ -1,6 +1,7 @@
 <?php
     class Database {
         public $connection;
+        public $statement;
         public function __construct($config , $username="root", $password="")
         {
             try {
@@ -14,13 +15,32 @@
         public function query($query , $params = [])
         {
             try {
-                $statement = $this->connection->prepare($query);
-                $statement->execute($params);
-                return $statement;
+                $this->statement = $this->connection->prepare($query);
+                $this->statement->execute($params);
+                return $this;
             }
             catch (Exception $e) {
                 echo "خطا در اجرای دستورات query" . $e->getMessage();
             }
         }
+        public function fetch(){
+            return $this->statement->fetch();
+        }
+        public function get(){
+            return $this->statement->fetchAll();
+        }
+        public function findOrFail() {
+            $result = $this->statement->fetch();
+            if (! $result) {
+                http_response_code(404);
+                header("Location:/view/404.html");
+                exit();
+            }
+            return $result;
+        }
+
+
+
+
 
     }
