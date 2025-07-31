@@ -17,3 +17,18 @@
 ```
 <div dir="rtl">
 حالا توسط کد بالا اطلاهات در جدول note ذخیره میشود . فقط برای نمایش یادداشت ها حتما $note['body'] رو داخل تابع htmlspactialchars قرار باید داد تا در هنگام نمایش به صورت کد html  نمایش داده نشود و در query که به پایگاه داده میدهیم باید مقدار ها را به صورت بایند شده :  ارسال کرد تا از حملات sql injection  جلوگیری شود
+
+<div dir="ltr">
+
+# filter_valتابع
+```php
+if (isset($_POST['email'])) {
+    $email = $_POST['email'];
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "ایمیل معتبر است.";
+    } else {
+        echo "فرمت ایمیل صحیح نیست.";
+    }
+}
+
+```
