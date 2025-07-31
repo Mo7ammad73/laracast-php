@@ -33,7 +33,7 @@
             $result = $this->statement->fetch();
             if (! $result) {
                 http_response_code(404);
-                header("Location:/view/404.html");
+                header("Location:/laracast-php/controller/404.php");
                 exit();
             }
             return $result;
