@@ -1,0 +1,2 @@
+
+در این جلسه یک پوشه note  در controller  ایجاد و 3 فایل note.php,notes.php,note_create.php را داخل ان میگذاریم فایل note_create به create.php فایل note به show.php  و فایل notes.php به  index.php تغییر نام پیدا کند حالا به پوشه views رفته و اونجا هم همینطور ابتدا یک پوشه note ایجاد و 3 فایل note.view.php,notes.view.php,note_create.view.php را انتقال داده و note.view میشه show.view بعد notes.view میشه index.viewبعد note_create.view میشه create.view
