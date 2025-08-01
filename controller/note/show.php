@@ -1,7 +1,7 @@
 <?php
-$config = require_once 'config.php';
-require_once "Database.php";
-require_once "Response.php";
+$config = require_once __DIR__.'/../config.php';
+require_once __DIR__.'/../Database.php';
+require_once __DIR__.'/../Response.php';
 function Authorize($condition, $status = 403)
 {
     if (!$condition) {
@@ -14,7 +14,7 @@ $db = new Database($config['database'], "root", "");
 $note = $db->query("SELECT * FROM notes where user_id = :user and id=:id",["user"=>3,"id"=>$_GET['id']])->findOrFail();
 $current_userid = 3;
 Authorize($note['user_id'] === $current_userid);
-require_once "views/note.view.php";
+require_once __DIR__.'/../views/note/show.view.php';
 //if(!$note){
 //
 //    http_response_code(Response::NOT_FOUND);
@@ -27,7 +27,7 @@ require_once "views/note.view.php";
 //    require_once "403.php";
 //}
 //var_dump($note);
-//require_once "views/note.view.php";
+//require_once "views/show.view.php";
 //
 //
 //require "Database.php";
@@ -37,7 +37,7 @@ require_once "views/note.view.php";
 //
 //$current_userid = 3; // فرضی؛ بعداً از جلسه login واقعی میاد
 //
-//// 1. گرفتن یادداشت بر اساس فقط id
+//// Resourceful Naming Conventions(29). گرفتن یادداشت بر اساس فقط id
 //$note = $db->query("SELECT * FROM notes WHERE id = :id", [
 //    'id' => $_GET['id']
 //])->fetch();
@@ -57,5 +57,5 @@ require_once "views/note.view.php";
 //}
 //
 //// 4. نمایش یادداشت
-//require "controller/views/note.view.php";
+//require "controller/views/show.view.php";
 //

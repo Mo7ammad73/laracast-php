@@ -111,7 +111,7 @@ $filteredbook = filter($books, $s );
     }, $numbers);
     
     print_r($squares);
-       //output:1,4,9,16
+       //output:Resourceful Naming Conventions(29),4,9,16
        
        
     //other example

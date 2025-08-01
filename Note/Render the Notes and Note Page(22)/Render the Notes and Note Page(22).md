@@ -51,8 +51,8 @@
         "/laracast-php/" => "controller/index.php",
         "/laracast-php/about" => "controller/about.php",
         "/laracast-php/contact" => "controller/contact.php",
-        "/laracast-php/notes" => "controller/notes.php",//جدید
-        "/laracast-php/notes/note" => "controller/note.php"//جدید
+        "/laracast-php/notes" => "controller/index.php",//جدید
+        "/laracast-php/notes/note" => "controller/show.php"//جدید
     ];
     $url =parse_url($_SERVER['REQUEST_URI'])['path'];
     echo $url;
@@ -79,7 +79,7 @@
     require_once "Database.php";
     $notes = new Database($config['database'], "root", "");
     $notes = $notes->query("SELECT * FROM notes where user_id=:id",["id"=>3])->fetchAll(PDO::FETCH_ASSOC);
-    require_once "views/notes.view.php";
+    require_once "views/index.view.php";
 ```
 
 # note.php
@@ -91,7 +91,7 @@
     $note = new Database($config['database'], "root", "");
     $note = $note->query("SELECT * FROM notes where id=:id",["id"=>$_GET['id']])->fetch();
     var_dump($note);
-    require_once "views/note.view.php";
+    require_once "views/show.view.php";
 ```
 
 # notes.view.php

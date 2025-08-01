@@ -42,7 +42,7 @@
     
     $current_userid = 3; // فرضی؛ بعداً از جلسه login واقعی میاد
     
-    // 1. گرفتن یادداشت بر اساس فقط id
+    // Resourceful Naming Conventions(29). گرفتن یادداشت بر اساس فقط id
     $note = $db->query("SELECT * FROM notes WHERE id = :id", [
         'id' => $_GET['id']
     ])->fetch();
@@ -62,7 +62,7 @@
     }
     
     // 4. نمایش یادداشت
-    require "views/note.view.php";
+    require "views/show.view.php";
     
 
 ```

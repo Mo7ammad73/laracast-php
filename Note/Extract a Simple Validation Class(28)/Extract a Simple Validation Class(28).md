@@ -73,7 +73,7 @@
         }
     }
 
-    require_once "views/notes_create.view.php";
+    require_once "views/create.view.php";
 ```
 <div dir="rtl">
 نکته ی مهمی که تو این جلسه گفته شد این بود که متد را به صورت static تعریف کنیم و بعد با نام متد:: نام کلاس پروژه بدون ایجاد یک شی از کلاس استفاده کنیم.

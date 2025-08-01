@@ -14,9 +14,9 @@
         "/laracast-php/" => "controller/index.php",
         "/laracast-php/about" => "controller/about.php",
         "/laracast-php/contact" => "controller/contact.php",
-        "/laracast-php/notes" => "controller/notes.php",
-        "/laracast-php/notes/create" => "controller/note_create.php",
-        "/laracast-php/notes/note" => "controller/note.php"
+        "/laracast-php/notes" => "controller/index.php",
+        "/laracast-php/notes/create" => "controller/create.php",
+        "/laracast-php/notes/note" => "controller/show.php"
         ];
 
 ```
@@ -42,7 +42,7 @@
 # note_create.php
 ```php
 <?php
-    require_once "views/notes_create.view.php";
+    require_once "views/create.view.php";
 ```
 
 # note_create.view.php
@@ -123,7 +123,7 @@ href بر حسب مسیرهای موجود در فایل routes.php  داده م
         var_dump($_POST);
     }
     
-    require_once "views/notes_create.view.php";
+    require_once "views/create.view.php";
 ```
 
 # note_create.view.php

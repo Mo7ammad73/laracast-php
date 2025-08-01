@@ -1,7 +1,7 @@
 <?php
-    $config = require_once 'config.php';
-    require_once "Database.php";
-    require_once "validator.php";
+    $config = require_once __DIR__.'/../config.php';
+    require_once __DIR__."/../Database.php";
+    require_once __DIR__."/../../validator.php";
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $error =[];
         $validator = new Validator();
@@ -18,4 +18,4 @@
         }
     }
 
-    require_once "views/notes_create.view.php";
+    require_once __DIR__."/../views/note/create.view.php";
