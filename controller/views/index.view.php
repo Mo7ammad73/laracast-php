@@ -1,5 +1,5 @@
 <?php
-$current_page="index";
-require_once "partials/nav.php";
-require_once "partials/header.php";
-require_once "partials/footer.php";
+//$current_page="index";
+ view("partials/nav.php");
+ view("partials/header.php",['heading' => 'index']);
+ view("partials/footer.php");

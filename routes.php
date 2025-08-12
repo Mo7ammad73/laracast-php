@@ -1,10 +1,10 @@
 <?php
 
     return [
-    "/laracast-php/" => "controller/index.php",
-    "/laracast-php/about" => "controller/about.php",
-    "/laracast-php/contact" => "controller/contact.php",
-    "/laracast-php/notes" => "controller/note/index.php",
-    "/laracast-php/notes/create" => "controller/note/create.php",
-    "/laracast-php/notes/note" => "controller/note/show.php"
+    "/laracast-php/public/" => base_path("controller/index.php"),
+    "/laracast-php/public/about" => base_path("controller/about.php"),
+    "/laracast-php/public/contact" => base_path("controller/contact.php"),
+    "/laracast-php/public/notes" => base_path("controller/note/index.php"),
+    "/laracast-php/public/notes/create" => base_path("controller/note/create.php"),
+    "/laracast-php/public/notes/note" => base_path("controller/note/show.php")
     ];

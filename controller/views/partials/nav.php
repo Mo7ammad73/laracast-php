@@ -18,10 +18,10 @@
                     </div>
                     <?php
                         $pages =[
-                            "/laracast-php/" => "Dashboard",
-                            "/laracast-php/about" => "About",
-                            "/laracast-php/contact"=> "Contact",
-                            "/laracast-php/notes"=> "Notes"
+                            "/laracast-php/public/" => "Dashboard",
+                            "/laracast-php/public/about" => "About",
+                            "/laracast-php/public/contact"=> "Contact",
+                            "/laracast-php/public/notes"=> "Notes"
                         ]
                     ?>
                     <div class="hidden md:block">

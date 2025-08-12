@@ -1,2 +1,5 @@
 <?php
-require_once "views/contact.view.php";
+ view("contact.view.php",
+    [
+        'heading' => "contact us"
+    ]);

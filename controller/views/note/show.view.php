@@ -1,7 +1,7 @@
 <?php
-$current_page="Note";
-
-
-require_once __DIR__.'/../partials/nav.php';
-require_once __DIR__.'/../partials/header.php';
-require_once __DIR__.'/../partials/footer.php';
+ view('partials/nav.php');
+ view('partials/header.php',[
+    'heading' => "Note",
+     'note' =>$note
+]);
+ view('partials/footer.php');

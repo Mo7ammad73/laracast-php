@@ -1,5 +1,8 @@
-<?php $current_page="Notes"; ?>
-<?php require_once __DIR__."/../partials/nav.php"; ?>
-<?php require_once __DIR__."/../partials/header.php"; ?>
 
-<?php require_once __DIR__."/../partials/footer.php"; ?>
+<?php  view("partials/nav.php"); ?>
+<?php  view("partials/header.php",[
+    'heading' => 'Notes',
+    'notes' => $notes
+]); ?>
+
+<?php  view("partials/footer.php"); ?>

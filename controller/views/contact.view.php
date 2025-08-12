@@ -1,5 +1,4 @@
 <?php
-$current_page="contact";
-require_once "partials/nav.php";
-require_once "partials/header.php";
-require_once "partials/footer.php";
+ view("partials/nav.php");
+ view("partials/header.php",['heading' => "contact"]);
+ view("partials/footer.php");

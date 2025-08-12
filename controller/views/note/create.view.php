@@ -1,6 +1,7 @@
-<?php $current_page="Create Notes"; ?>
-<?php require_once __DIR__."/../partials/nav.php"; ?>
-<?php require_once __DIR__."/../partials/header.php"; ?>
+<?php  view("partials/nav.php"); ?>
+<?php  view("partials/header.php",[
+    'heading' => "Create"
+]); ?>
 
     <div class="mt-6">
         <form method="post">
@@ -31,4 +32,4 @@
     </div>
 
 
-<?php require_once __DIR__."/../partials/footer.php"; ?>
+<?php  view("partials/footer.php"); ?>

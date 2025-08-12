@@ -1,6 +1,6 @@
 <?php
     class Validator {
-        public function Is_Empty($value){
+        public static function Is_Empty($value){
             return strlen(trim($value)) == 0;
         }
         public static function Count_Char($value , $min=1 , $max=INF){

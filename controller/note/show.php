@@ -1,7 +1,7 @@
 <?php
-$config = require_once __DIR__.'/../config.php';
-require_once __DIR__.'/../Database.php';
-require_once __DIR__.'/../Response.php';
+$config = require_once base_path("controller/config.php");
+require_once base_path("controller/Database.php");
+require_once base_path("controller/Response.php");
 function Authorize($condition, $status = 403)
 {
     if (!$condition) {
@@ -14,7 +14,7 @@ $db = new Database($config['database'], "root", "");
 $note = $db->query("SELECT * FROM notes where user_id = :user and id=:id",["user"=>3,"id"=>$_GET['id']])->findOrFail();
 $current_userid = 3;
 Authorize($note['user_id'] === $current_userid);
-require_once __DIR__.'/../views/note/show.view.php';
+view("note/show.view.php", ["note"=>$note]);
 //if(!$note){
 //
 //    http_response_code(Response::NOT_FOUND);
