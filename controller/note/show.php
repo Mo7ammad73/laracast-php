@@ -1,7 +1,7 @@
 <?php
 $config = require_once base_path("controller/config.php");
-require_once base_path("controller/Database.php");
-require_once base_path("controller/Response.php");
+//require_once base_path("controller/Database.php");
+//require_once base_path("controller/Response.php");
 function Authorize($condition, $status = 403)
 {
     if (!$condition) {
