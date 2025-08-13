@@ -22,13 +22,14 @@
                             "/laracast-php/public/about" => "About",
                             "/laracast-php/public/contact"=> "Contact",
                             "/laracast-php/public/notes"=> "Notes"
-                        ]
+                        ];
+                        $current = parse_url($_SERVER['REQUEST_URI'])['path'];
                     ?>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <?php foreach ($pages as $key => $value): ?>
-                                <a href=<?=$key ?> aria-current="page" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"><?= $value ?></a>
+                                <a href="<?=$key ?>" class="rounded-md <?= ($current == $key) ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white "; ?>  px-3 py-2 text-sm font-medium " <?= ($current == $key) ? "aria-current=page" : "" ;?>> <?= $value ?></a>
                             <?php endforeach; ?>
                         </div>
                     </div>
