@@ -4,8 +4,9 @@
 ]); ?>
 
     <div class="mt-6">
+        <div class="max-w-lg mx-auto 1/2-h-screen  items-center">
         <form method="post">
-            <div class="space-y-12">
+            <div class="space-y-12 max-w-md" style=" vertical-align: center;">
 
                 <div class="col-span-full">
                     <label for="body" class="block text-sm/6 font-medium text-gray-900">Body</label>
@@ -28,6 +29,7 @@
                     <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
                 </div>
         </form>
+        </div>
 
     </div>
 
