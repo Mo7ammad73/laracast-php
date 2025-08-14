@@ -1,5 +1,8 @@
 <?php
-    $config = require_once base_path("controller/config.php");
+use core\Database;
+use core\Validator;
+
+$config = require_once base_path("controller/config.php");
 //    require_once base_path("controller/Database.php");
 //    require_once base_path("validator.php");
 $error =[];

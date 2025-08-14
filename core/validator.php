@@ -1,4 +1,5 @@
 <?php
+namespace core;
     class Validator {
         public static function Is_Empty($value){
             return strlen(trim($value)) == 0;

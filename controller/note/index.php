@@ -1,4 +1,5 @@
 <?php
+use core\Database;
 $config = require_once base_path("controller/config.php");
 //require_once base_path("controller/Database.php");
 $notes = new Database($config['database'], "root", "");

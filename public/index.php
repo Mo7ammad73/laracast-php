@@ -1,17 +1,18 @@
 <?php
 
     const BASE_PATH = __DIR__ . '/../';
-    require_once BASE_PATH."function.php";
+    require_once BASE_PATH . "core/function.php";
     spl_autoload_register(function ($class) {
+        $class = str_replace("\\", "/", $class);
         // مسیر فایل کلاس را بر اساس نام کلاس بساز
-        $path = base_path("/core/"). $class . '.php';
+        $path = base_path("{$class}.php");
 
         if (file_exists($path)) {
             require_once $path;
         }
     });
 
-    $routes = require_once base_path('routes.php');
+    $routes = require_once base_path('core/routes.php');
     $url =parse_url($_SERVER['REQUEST_URI'])['path'];
 
     if(array_key_exists($url,$routes)){
