@@ -4,7 +4,7 @@
 ]); ?>
 
     <div class="mt-6">
-        <div class="max-w-lg mx-auto 1/2-h-screen  items-center">
+        <div class="max-w-lg mx-auto 1/2-h-screen">
         <form method="post">
             <div class="space-y-12 max-w-md" style=" vertical-align: center;">
 
