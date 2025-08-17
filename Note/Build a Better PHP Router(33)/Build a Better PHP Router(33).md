@@ -526,7 +526,7 @@ $controller: کنترلری که بعد از ارسال فرم باید اجرا
 ```php
     $router->route($url, $method);
 ```
-![image](ChatGPT%20Image%20Aug%2017,%202025,%2010_19_41%20PM.png)
+<img title="a title" alt="Alt text" src="ChatGPT%20Image%20Aug%2017,%202025,%2010_19_41%20PM.png">
 <div dir="rtl">
 ین تصویر یک فلوچارت (نمودار گردشی) را نشان می‌دهد که فرآیند تعیین متد HTTP در یک سیستم مسیریابی (Router) را توضیح می‌دهد:
 1. Request URI (درخواست URI):
