@@ -153,22 +153,30 @@ require_once تضمین می‌کنه فایل فقط یک بار لود بشه.
 
 اگر هیچ route مطابقی نبود → خطای 404 برگردون.
 
+# متد add
 خیلی خوب 👌 بیا همین متد add رو هم مو به مو مثل معلم جفری بررسی کنیم:
 
-کد:
-public function add($methods , $uri , $controller) {
-foreach ((array)$methods as $method) {
-$this->routes[] = [
-'uri' => $uri,
-'controller' => $controller,
-'method' => $method
-];
-}
-}
+<div dir="ltr">
 
+```php
+    public function add($methods , $uri , $controller) {
+    foreach ((array)$methods as $method) {
+    $this->routes[] = [
+    'uri' => $uri,
+    'controller' => $controller,
+    'method' => $method
+    ];
+    }
+    }
+```
+<div dir="rtl">
 ۱. تعریف متد
-public function add($methods , $uri , $controller)
+<div dir="ltr">
 
+```php
+    public function add($methods , $uri , $controller)
+```
+<div dir="rtl">
 
 متد public از کلاس Router.
 
@@ -183,9 +191,12 @@ $controller → مسیری که باید به فایل کنترلر اشاره �
 'controllers/notes/index.php'
 
 ۲. تبدیل به آرایه
-foreach ((array)$methods as $method) {
+<div dir="ltr">
 
-
+```php
+    foreach ((array)$methods as $method) {
+```
+<div dir="rtl">
 (array)$methods خیلی مهمه 👇
 
 اگر $methods فقط یک رشته باشه (مثلاً "GET")، با این تبدیل به آرایه تبدیل میشه مثل ["GET"].
@@ -195,12 +206,16 @@ foreach ((array)$methods as $method) {
 👉 این باعث میشه متد همیشه بتونه با foreach روی $methods حلقه بزنه، چه یک متد باشه، چه چندتا.
 
 ۳. اضافه کردن route
-$this->routes[] = [
-'uri' => $uri,
-'controller' => $controller,
-'method' => $method
-];
+<div dir="ltr">
 
+```php
+    $this->routes[] = [
+    'uri' => $uri,
+    'controller' => $controller,
+    'method' => $method
+    ];
+```
+<div dir="rtl">
 
 هر بار در حلقه، یک route جدید ساخته میشه و داخل آرایه $this->routes ذخیره میشه.
 
@@ -213,24 +228,32 @@ $this->routes[] = [
 'method' → متد HTTP
 
 مثلاً اگر بنویسی:
+<div dir="ltr">
 
-$router->add('GET', '/notes', 'controllers/notes/index.php');
+```php
+    $router->add('GET', '/notes', 'controllers/notes/index.php');
+```
 
-
+<div dir="rtl">
 بعد از اجرا این ذخیره میشه:
+<div dir="ltr">
 
-[
-'uri' => '/notes',
-'controller' => 'controllers/notes/index.php',
-'method' => 'GET'
-]
+```php
+    [
+    'uri' => '/notes',
+    'controller' => 'controllers/notes/index.php',
+    'method' => 'GET'
+    ]
+```
 
-
+<div dir="rtl">
 و اگر متد رو اینجوری بدی:
+<div dir="ltr">
 
-$router->add(['GET', 'POST'], '/notes', 'controllers/notes/index.php');
-
-
+```php
+    $router->add(['GET', 'POST'], '/notes', 'controllers/notes/index.php');
+```
+<div dir="rtl">
 دو تا route اضافه میشه: یکی برای GET و یکی برای POST.
 
 ۴. پایان
