@@ -405,3 +405,125 @@ $controller: کنترلری که بعد از ارسال فرم باید اجرا
 
 ✅ پس می‌بینی که متدهای get و post فقط یه نقشه راه (Route Map) درست می‌کنن.
 کاربر هر آدرسی رو بزنه، یا هر فرمی رو بفرسته، این Router تصمیم می‌گیره کدوم فایل باید اجرا بشه.
+
+اما در نهایت ما از متد add برای ذخیره آدرس ها استفاده میکنیم بریم سراف فایل routes.php خودمان در پروژه 
+<div dir="ltr">
+
+```php
+<?php
+
+        $router->add('GET','/laracast-php/public/', "controller/index.php");
+        $router->add('GET','/laracast-php/public/about', "controller/about.php");
+        $router->add('GET','/laracast-php/public/contact', "controller/contact.php");
+        $router->add('GET','/laracast-php/public/notes', "controller/note/index.php");
+        $router->add(['GET' , 'POST'],'/laracast-php/public/notes/create', "controller/note/create.php");
+        $router->add(['GET' , 'POST'],'/laracast-php/public/notes/note', "controller/note/show.php");
+
+```
+<div dir="rtl">
+حالا بریم به سراغ فایل index.php که در پوشه public قرار دارد:
+<div dir="ltr">
+
+```php
+<?php
+    const BASE_PATH = __DIR__ . '/../';
+    require_once BASE_PATH . "core/function.php";
+    spl_autoload_register(function ($class) {
+        $class = str_replace("\\", "/", $class);
+        // مسیر فایل کلاس را بر اساس نام کلاس بساز
+        $path = base_path("{$class}.php");
+
+        if (file_exists($path)) {
+            require_once $path;
+        }
+    });
+    $router = new \core\Router();
+    $routes = require_once base_path('core/routes.php');
+    $url =parse_url($_SERVER['REQUEST_URI'])['path'];
+
+
+
+    $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
+    $router->route($url, $method);
+
+```
+<div dir="rtl">
+این تکه کد زیر که قبلا هم بود و کاری باهاش نداریم:
+<div dir="ltr">
+
+```php
+<?php
+    const BASE_PATH = __DIR__ . '/../';
+    require_once BASE_PATH . "core/function.php";
+    spl_autoload_register(function ($class) {
+        $class = str_replace("\\", "/", $class);
+        // مسیر فایل کلاس را بر اساس نام کلاس بساز
+        $path = base_path("{$class}.php");
+
+        if (file_exists($path)) {
+            require_once $path;
+        }
+    });
+```
+<div dir="rtl">
+اما قراره که درمورد کدهای زیر صحبت کنیم:
+<div dir="ltr">
+
+```php
+<?php
+
+    $router = new \core\Router();
+    require_once base_path('core/routes.php');
+    $url =parse_url($_SERVER['REQUEST_URI'])['path'];
+    $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
+    $router->route($url, $method);
+
+```
+<div dir="rtl">
+در خط زیر یک شی از کلاس router ایجاد کردیم و چون این کلاس در فضای نام core قرار دارد و از use استفاده نکردیم پس با \ آدرس فضای نام را میدهیم:
+<div dir="ltr">
+
+```php
+    $router = new \core\Router();
+```
+<div dir="rtl">
+اما در خط زیر فایل routes.php که شامل مسیرهای ما هست را require میکنیم تا مسیرها توسط متد add در شی router ریخته بشه و بعدا بتوانیم مسیریابی کنیم.
+<div dir="ltr">
+
+```php
+    require_once base_path('core/routes.php');
+```
+
+<div dir="rtl">
+در خط زیر آدرس url که کاربر در مرورگر وارد کرده دریافت شده و در متغیر url ذخیره میشود.
+<div dir="ltr">
+
+```php
+    $url =parse_url($_SERVER['REQUEST_URI'])['path'];
+```
+<div dir="rtl">
+در خط زیر بررسی میشه که متد چیست اگر کاربر در یک فرم مثل فرمی که برای حذف یادداشت در فایل show.view.php نوشتیم توسط یک input مخفی  متدی فرستاده باشد آن متد در method ریخته میشه اما اگر نفرستاده باشد همان درخواست کاربر که get یا post هست در method ریخته میشود.
+<div dir="ltr">
+
+```php
+    $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
+```
+
+```php
+//فایل show.view.php که متد DELETE را فرستادیم
+    <form method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="id" value="<?= $note['id']; ?>">
+        <input type="hidden" name="user_id" value="<?= $note['user_id']; ?>">
+        <button class="text-sm text-red-500">Delete</button>
+    </form>
+```
+
+<div dir="rtl">
+توسط دستور زیر با توجه به مقدار url و method به فایل router برای بررسی آدرس میرویم که این کار را متد route میکند اگر آدرس بود صفحه مورد نظر نمایش در غیر اینصورت با توجه به تابع abort پیغام 404 نمایش داده میشود.
+<div dir="ltr">
+
+```php
+    $router->route($url, $method);
+```
+![ChatGPT Image Aug 17, 2025, 10_19_41 PM.png](../../../../../Users/Mohammad110/Downloads/ChatGPT%20Image%20Aug%2017%2C%202025%2C%2010_19_41%20PM.png)
