@@ -1,5 +1,4 @@
 <?php
-
     const BASE_PATH = __DIR__ . '/../';
     require_once BASE_PATH . "core/function.php";
     spl_autoload_register(function ($class) {
@@ -11,16 +10,25 @@
             require_once $path;
         }
     });
-
+    $router = new \core\Router();
     $routes = require_once base_path('core/routes.php');
     $url =parse_url($_SERVER['REQUEST_URI'])['path'];
 
-    if(array_key_exists($url,$routes)){
 
-        require $routes[$url];
-    }else
-    {
-            http_response_code(404);
-            echo "404 - Page not found";
-            exit;
-        }
+
+    $method = isset($_POST['method']) ? $_POST['method'] : $_SERVER['REQUEST_METHOD'] ;
+    $router->route($url, $method);
+
+
+
+
+
+//    if(array_key_exists($url,$routes)){
+//
+//        require $routes[$url];
+//    }else
+//    {
+//            http_response_code(404);
+//            echo "404 - Page not found";
+//            exit;
+//        }

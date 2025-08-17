@@ -12,6 +12,7 @@
         </ul>
         <div class="mt-2">
             <form method="POST">
+                <input type="hidden" name="_method" value="DELETE">
                 <input type="hidden" name="id" value="<?= $note['id']; ?>">
                 <input type="hidden" name="user_id" value="<?= $note['user_id']; ?>">
                 <button class="text-sm text-red-500">Delete</button>
