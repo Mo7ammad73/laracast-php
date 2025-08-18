@@ -11,12 +11,12 @@
         }
     });
     $router = new \core\Router();
-    $routes = require_once base_path('core/routes.php');
+     require_once base_path('core/routes.php');
     $url =parse_url($_SERVER['REQUEST_URI'])['path'];
 
 
 
-    $method = isset($_POST['method']) ? $_POST['method'] : $_SERVER['REQUEST_METHOD'] ;
+    $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
     $router->route($url, $method);
 
 
