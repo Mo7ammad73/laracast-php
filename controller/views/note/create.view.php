@@ -5,7 +5,7 @@
 
     <div class="mt-6">
         <div class="max-w-lg mx-auto 1/2-h-screen">
-        <form method="post">
+        <form method="post" action="/laracast-php/public/notes/store">
             <div class="space-y-12 max-w-md" style=" vertical-align: center;">
 
                 <div class="col-span-full">

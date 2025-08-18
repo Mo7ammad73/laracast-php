@@ -6,6 +6,8 @@
         $router->add('GET','/laracast-php/public/notes', "controller/note/index.php");
         $router->add(['GET' , 'POST'],'/laracast-php/public/notes/create', "controller/note/create.php");
         $router->add(['GET' , 'POST'],'/laracast-php/public/notes/note', "controller/note/show.php");
+        $router->delete('/laracast-php/public/notes/note' , "controller/note/destroy.php");
+        $router->post('/laracast-php/public/notes/store', "controller/note/store.php");
 
 //    return [
 //    "/laracast-php/public/" => base_path("controller/index.php"),
