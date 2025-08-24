@@ -234,7 +234,7 @@ $db = App::resolve('core\Database');
 ---
 
 ###  تفاوت‌ها به زبان ساده
-
+<div dir="rtl">
 1. **بدون App.php**:
 
     - وابسته به متغیر `$container`.
