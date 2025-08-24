@@ -285,7 +285,27 @@ require "router.php";
 
 ```
 اینجا یه مشکل داری:
+اگر فایل `Bootstrap.php` نداشته باشیم، باید این کدها رو یا در هر فایلی که به پایگاه داده نیاز داره بنویسیم، یا یک بار در `index.php` بنویسیم و بعد هرجا لازم بود `$db` یا `$container` رو انتقال بدیم یا global کنیم.
+منظور از این کدها کدهای زیر هست :
+```php
+$container = new Container();
+App::setContainer($container);
+App::bind('core\Database', function() {
+    $config = require base_path('controller/config.php');
+    return new Database($config['database']);
+});
 
+$db = App::resolve('core\Database');
+
+```
+بدون Bootstrap فایل‌های توی `controller/note` مثل `index.php`، `store.php` و … نیاز به دیتابیس دارن.
+راه اول: توی هر فایل، قبل از کار با Database،  کدهای بالا رو می نویسیم که مشکل: **تکرار کد** و نقض اصل DRY (Don’t Repeat Yourself) رو داره.
+راه دوم: فقط توی `index.php` بنویسیم و `$db` رو به فایل‌های دیگه پاس بدیم یا global کنیم.
+مشکل: استفاده از global خوب نیست و مدیریت پروژه بزرگ رو سخت می‌کنه.
+پس میاییم این کدها رو در فایل Bootstrap مینویسیم در فایل index فایل Bootstrap رو require میکنیم  هرجا که نیاز به شی پایگاه داده بود کد زیر را مینویسیم:
+```php
+$db = App::resolve('core\Database');
+```
 - هر بار که می‌خوای پروژه رو اجرا کنی، باید همه‌ی تنظیمات Container و Bind کردن‌ها رو **مستقیم تو index.php** یا جاهای دیگه تکرار کنی .
 - ما نمی‌خوایم index.php شلوغ بشه و همه تنظیمات توش باشه، به همین خاطر Bootstrap جدا کردیم.
 - پروژه که بزرگ بشه، index.php پر از شلوغی میشه.
