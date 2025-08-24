@@ -130,6 +130,14 @@ $db = $container->resolve('core\Database');
   
     }
 ```
+ما توی کلاس `App` یه property تعریف کردیم
+برای تنظیم کردنش یه متد نوشتیمsetcontainer
+پس با این دستور:
+```php
+App::setContainer(new Container());
+```
+میایم می‌گیم: **توی App::$container یک شیء از Container بریز.**
+حالا اگه بخوام توی این خاصیت bind کنم نیاز نیست App::$containerبزنم بلکه App::bind میزنم
 بریم سراغ توضیح خط به خط
 ```php
     namespace core;  
@@ -139,7 +147,7 @@ $db = $container->resolve('core\Database');
 class App {  
         protected static $container;  
 ```
-کلاس App را تعریف کرده و در خط بعدی یک خاصیت با نام container ایجاد میکنیم که ایستا هست یعنی به کلاس تعلق دارد نه نمونه ها. این خاصیت قراره یک کانتینر را در خود نگه دارد منظور از یک کانتینر یعنی یک شی از کلاس Container  پس میتوان نوع این خاصیت را Container گذاشت یعنی :
+کلاس App را تعریف کرده و در خط بعدی یک خاصیت با نام container ایجاد میکنیم که ایستا هست یعنی به کلاس تعلق دارد نه نمونه ها یا به عبارت دیگر یک متغیر سراسری هست اما فقط مخصوص کلاس App این خاصیت قراره یک کانتینر را در خود نگه دارد منظور از یک کانتینر یعنی یک شی از کلاس Container  پس میتوان نوع این خاصیت را Container گذاشت یعنی :
 ```php
 protected static Container $container;
 ```
@@ -176,6 +184,11 @@ public static function bind($key , $resolver) {
             static::$container->bind($key , $resolver);  
         }  
 ```
+با توجه به این که توسط متد setcontainer یک شی Container در $container ریختیم پس $container یک شی از کلاس Container هست که متد bind  هم دارد.
+خاصیت `$container` توی `App` در ابتدا خالیه.
+با `App::setContainer(new Container());` پرش می‌کنیم.    
+حالا `$container` تبدیل میشه به یه شیء `Container`.
+پس وقتی `App::bind()` رو صدا می‌زنیم، در واقع متد `bind` خود **Container** اجرا میشه.
 در اینصورت برای استفاده App::bind( ) میزنیم اما اگه استفاده نکنیم App::Container->bind میزنیم.
 در مورد متد resolve هم همان توضیحات بالا صدق میکند.
 در کل چون ما در پروژه میخواهیم با App  bind  یا resolve  کنیم پس بهتره داخل این کلاس متدهای میانبر به متدهای کلاس کانتینر بزنیم و گرنه درعمل فرقی ندارند:
