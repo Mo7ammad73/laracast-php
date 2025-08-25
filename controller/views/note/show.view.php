@@ -10,6 +10,9 @@
                 echo  "<li>body :" .htmlspecialchars($note['body']). "</li>";
             ?>
         </ul>
+        <footer class="mt-6">
+            <a href="/laracast-php/public/notes/edit?id=<?=$note['id']; ?>" class="text-sm text-blue-500 border border-current px-4 py-2 rounded" >Edit</a>
+        </footer>
         <div class="mt-2">
             <form method="POST">
                 <input type="hidden" name="_method" value="DELETE">

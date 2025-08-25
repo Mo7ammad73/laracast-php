@@ -24,6 +24,9 @@
         }
 
         public function route($uri , $method) {
+//            if ($method === 'POST' && isset($_POST['_method'])) {
+//                $method = strtoupper($_POST['_method']); // PATCH یا DELETE یا PUT
+//            }
             foreach ($this->routes as $route) {
                 if ($route['uri'] == $uri && $route['method'] == strtoupper($method)) {
                     return require_once base_path($route['controller']);
