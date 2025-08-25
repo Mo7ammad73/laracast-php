@@ -10,8 +10,10 @@
             require_once $path;
         }
     });
+    require_once base_path("Bootstrap.php");
+
     $router = new \core\Router();
-     require_once base_path('core/routes.php');
+    require_once base_path('core/routes.php');
     $url =parse_url($_SERVER['REQUEST_URI'])['path'];
 
 
