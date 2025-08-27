@@ -1,2 +1,4 @@
 <?php
- view("index.view.php");
+
+    $_SESSION['name'] = "Mohammad";
+    view("index.view.php");

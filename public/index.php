@@ -1,4 +1,5 @@
 <?php
+    session_start();
     const BASE_PATH = __DIR__ . '/../';
     require_once BASE_PATH . "core/function.php";
     spl_autoload_register(function ($class) {
@@ -20,6 +21,7 @@
 
     $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
     $router->route($url, $method);
+
 
 
 
