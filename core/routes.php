@@ -10,6 +10,8 @@
         $router->post('/laracast-php/public/notes/store', "controller/note/store.php");
         $router->add('GET','/laracast-php/public/notes/edit', "controller/note/edit.php");
         $router->patch('/laracast-php/public/notes/update', "controller/note/update.php");
+        $router->get('/laracast-php/public/register' , "controller/registeration/create.php");
+        $router->post('/laracast-php/public/register' , "controller/registeration/store.php");
 
 //    return [
 //    "/laracast-php/public/" => base_path("controller/index.php"),
