@@ -33,6 +33,7 @@ use core\App;
             'email' => $email
         ];
         header("Location:/laracast-php/public/");
+        exit();
     }
 
 
