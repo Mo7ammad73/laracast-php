@@ -27,10 +27,10 @@
             }
         }
         public function fetch(){
-            return $this->statement->fetch();
+            return $this->statement->fetch(PDO::FETCH_ASSOC);
         }
         public function get(){
-            return $this->statement->fetchAll();
+            return $this->statement->fetchAll(PDO::FETCH_ASSOC);
         }
         public function findOrFail() {
             $result = $this->statement->fetch();

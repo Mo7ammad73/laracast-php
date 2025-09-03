@@ -29,7 +29,13 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                             <?php foreach ($pages as $key => $value): ?>
-                                <a href="<?=$key ?>" class="rounded-md <?= ($current == $key) ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white "; ?>  px-3 py-2 text-sm font-medium " <?= ($current == $key) ? "aria-current=page" : "" ;?>> <?= $value ?></a>
+                                    <?php if ($value == "Notes"): ?>
+                                        <?php if ($_SESSION['user'] ?? false) : ?>
+                                            <a href="<?=$key ?>" class="rounded-md <?= ($current == $key) ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white "; ?>  px-3 py-2 text-sm font-medium " <?= ($current == $key) ? "aria-current=page" : "" ;?>> <?= $value ?></a>
+                                        <?php endif; ?>
+                                    <?php else : ?>
+                                    <a href="<?=$key ?>" class="rounded-md <?= ($current == $key) ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white "; ?>  px-3 py-2 text-sm font-medium " <?= ($current == $key) ? "aria-current=page" : "" ;?>> <?= $value ?></a>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
                     </div>
@@ -51,8 +57,13 @@
                                 <span class="sr-only">Open user menu</span>
                                 <?php if($_SESSION['user'] ?? false): ?>
                                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" class="size-8 rounded-full" />
+                                    <form action="/laracast-php/public/logout" method="post">
+                                        <input type="hidden" name="_method" value="delete">
+                                        <button class="text-white-500">Logout</button>
+                                    </form>
                                 <?php else: ?>
-                                    <a href='/laracast-php/public/register' class="text-white z-50 relative">Register</a>
+                                    <a href="/laracast-php/public/login" class="rounded-md <?= ($current == "/laracast-php/public/login") ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white ";?> z-50 relative px-3 py-2 text-sm font-medium " <?= ($current == "/laracast-php/public/login") ? "aria-current=page" : "" ;?>> Login</a>
+                                    <a href="/laracast-php/public/register" class="rounded-md <?= ($current == "/laracast-php/public/register") ? " bg-gray-900 text-white " : " text-gray-300 hover:bg-gray-700 hover:text-white ";?> z-50 relative px-3 py-2 text-sm font-medium " <?= ($current == "/laracast-php/public/register") ? "aria-current=page" : "" ;?>> Register</a>
                                 <?php endif; ?>
                             </button>
 

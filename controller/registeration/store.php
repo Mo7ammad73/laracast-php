@@ -27,8 +27,9 @@ use core\App;
     $user = $db->query("select * from users where email = :email", [':email' => $email])->get();
     if ($user){
         header("Location:/laracast-php/public/");
+        exit();
     }else{
-        $db->query("INSERT INTO users (email, password) values (:email, :password)", [':email' => $email, ':password' => $password]);
+        $db->query("INSERT INTO users (email, password) values (:email, :password)", [':email' => $email, ':password' =>password_hash($password,PASSWORD_BCRYPT)]);
         $_SESSION['user'] =[
             'email' => $email
         ];

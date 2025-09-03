@@ -12,6 +12,10 @@
         $router->patch('/laracast-php/public/notes/update', "controller/note/update.php");
         $router->get('/laracast-php/public/register' , "controller/registeration/create.php")->only('guest');
         $router->post('/laracast-php/public/register' , "controller/registeration/store.php");
+        $router->get('/laracast-php/public/login' , "controller/sessions/create.php")->only('guest');
+        $router->post('/laracast-php/public/login' , "controller/sessions/store.php")->only('guest');
+        $router->delete('/laracast-php/public/logout' , "controller/sessions/destroy.php")->only('auth');
+
 
 //    return [
 //    "/laracast-php/public/" => base_path("controller/index.php"),
