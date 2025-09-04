@@ -32,15 +32,7 @@
                     if($route['middleware']) {
                         Middleware::resolve($route['middleware']);
                     }
-//                    if($route['middleware'] == 'guest') {
-//                        (new Guest)->handle();
-//
-//                    }
-//                    if($route['middleware'] == 'auth') {
-//                        (new Auth)->handle();
-//
-//                    }
-                    return require_once base_path($route['controller']);
+                    return require_once base_path("http/controller/" . $route['controller']);
                 }
             }
             $this->abort();

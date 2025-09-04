@@ -7,7 +7,7 @@
     $container = new Container();
     App::setcontainer($container);
     App::bind('core\Database' , function (){
-        $config = require base_path('controller/config.php');
+        $config = require base_path('http/controller/config.php');
         return new Database($config['database']);
     });
 

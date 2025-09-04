@@ -7,19 +7,9 @@ use core\App;
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$error = [];
-
-if( ! Validator::Validate_email($email) ){
-    $error['email'] = "Invalid email";
-}
-
-$result = Validator::Validate_password($password);
-if (! $result['valid']) {
-    $error['password'] = $result['message'];
-}
-
-if($error) {
-    view("sessions/create.view.php", ['error' => $error]);
+$form = new \http\Forms\LoginForm();
+if (! $form->validate($email, $password)){
+    view("sessions/create.view.php", ['error' => $form->getErrors()]);
     return;
 }
 //register

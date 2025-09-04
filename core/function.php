@@ -4,7 +4,7 @@
     }
     function view($path , $attributes = []){
         extract($attributes);
-        require base_path("controller/views/".$path);
+        require base_path("http/controller/views/".$path);
     }
     function Authorize($condition, $status = 403)
     {
