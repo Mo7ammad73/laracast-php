@@ -60,7 +60,7 @@
 
         protected function abort($code=404){
             http_response_code($code);
-            require_once base_path("controller/{$code}.php");
+            require_once base_path("http/controller/{$code}.php");
             die();
         }
 

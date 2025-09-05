@@ -1,29 +1,18 @@
 <?php
 
-use core\Validator;
-use core\Database;
-use core\App;
+use core\authenticator;
+use http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$form = new \http\Forms\LoginForm();
-if (! $form->validate($email, $password)){
-    view("sessions/create.view.php", ['error' => $form->getErrors()]);
-    return;
-}
-//register
-$db = App::resolve(Database::class);
-$user = $db->query("select * from users where email = :email", [':email' => $email])->fetch();
-if ($user){
-    if(password_verify($password, $user['password'])){
-        login($user);
-        header("location: /laracast-php/public/");
-        exit();
+
+$form = new LoginForm();
+if ($form->validate($email, $password)){
+    $auth = new authenticator();
+    if( $auth->attempt($email, $password) ) {
+        Redirect("/laracast-php/public");
     }
-    return view("sessions/create.view.php", ['error'=>['password' => "password is wrong"]] );
+    $form->adderror('email','No Matching Account Found for that email address and password');
 }
-return view("sessions/create.view.php", ['error'=>["email" => "email not found"]] );
-
-
-
+return view("sessions/create.view.php" ,['error' => $form->getErrors()] );
