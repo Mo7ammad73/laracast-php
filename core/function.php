@@ -19,3 +19,8 @@
         header("Location:".$path);
         exit();
     }
+
+
+    function old($key , $default =''){
+        return core\session::get('old')[$key] ?? $default;
+    }

@@ -17,4 +17,5 @@ if ( $form->validate($email, $password)){
 //$_SESSION ['_flashed']['error'] = $form->getErrors();
 
 \core\session::flash('error',$form->getErrors());
+\core\session::flash('old',['email'=>$email]);
 return Redirect("/laracast-php/public/login");
