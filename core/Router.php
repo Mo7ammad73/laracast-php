@@ -37,6 +37,11 @@
             }
             $this->abort();
         }
+        public function previousUrl()
+        {
+            return $_SERVER['HTTP_REFERER'];
+        }
+
 
         public function add($methods , $uri , $controller) {
             foreach ((array)$methods as $method) {

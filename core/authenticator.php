@@ -18,6 +18,17 @@
             }
             return false;
         }
+        public function register($email, $password)
+        {
+            $db = App::resolve(Database::class);
+            $user = $db->query("select * from users where email = :email", [':email' => $email])->get();
+            if ($user) {
+                return false;
+            }
+            $db->query("INSERT INTO users (email, password) values (:email, :password)", [':email' => $email, ':password' => password_hash($password, PASSWORD_BCRYPT)]);
+            $this->login(["email" => $email]);
+            return true;
+        }
 
         public function login($user){
             $_SESSION['user'] = [
@@ -33,7 +44,7 @@
 
         }
         public function Islogin(){
-            if($_SSESSION['user'] ?? false){
+            if($_SESSION['user'] ?? false){
                 return true;
             }
             return false;

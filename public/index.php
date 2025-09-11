@@ -20,8 +20,16 @@
 
 
     $method = isset($_POST['_method']) ? $_POST['_method'] : $_SERVER['REQUEST_METHOD'] ;
-    $router->route($url, $method);
-    \core\session::unflash();
+
+    try {
+        $router->route($url, $method);
+        \core\session::unflash();
+    }catch (\core\ValidationException $exception){
+        \core\session::flash('error',$exception->error);
+        \core\session::flash('old', ['email' => $exception->attributes['email']]);
+        return Redirect($_SERVER['HTTP_REFERER']);
+    }
+
 
 
 
